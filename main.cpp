@@ -1,5 +1,4 @@
 #include "entity.h"
-#include "random"
 
 void Knight();
 void Dragon();
