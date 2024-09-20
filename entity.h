@@ -5,44 +5,68 @@
 #include <string>
 #include <vector>
 
-struct entity
+class entity
 {
+
+private:
+
 	std::string name;
 	int current_health;
 	int max_health;
-	int attack;
-};
 
-entity knight
-{
-	entity {"Knight", 100, 100, 10}
-};
+public:
 
-entity dragon
-{
-	entity {"dragon", 200, 200, 20}
+	entity(std::string name, int current_health, int max_health)
+		: name(name), current_health(current_health), max_health(max_health) {}
+
+	void display()
+	{
+		std::cout << "Name: " << name << " " << current_health << '/' << max_health << std::endl;
+	}
+
+	bool isAlive()
+	{
+		return current_health > 0;
+	}
+
+	void takeDamge(int attack)
+	{
+		current_health -= attack;
+	}
 };
 
 void Knight()
 {
+	entity dragon("Dragon", 200, 100);
+	entity knight("Himothy", 100, 100);
+
 	std::string input;
 
-
-	while (dragon.current_health > 0 && knight.current_health > 0) {
-		std::cout << "Knight's health: " << knight.current_health << "/" << knight.max_health << ' ' << "ATK" << knight.attack << std::endl;
+	while (knight.isAlive() && dragon.isAlive()) {
+		
+		knight.display();
 
 		std::cout << "**********************************" << std::endl;
 
-		std::cout << "Dragon's health: " << dragon.current_health << "/" << dragon.max_health << ' ' << "ATK" << dragon.attack << std::endl;
+		dragon.display();
+
+		std::cout << "**********************************" << std::endl;
 
 		std::cout << "Type A to attack D to defend: ";
 
 		std::cin >> input;
 
-		if (input == "A" || input == "a")
+		int critical = std::rand() % 2;
+
+		if (input == "A" || input == "a" && critical == 0 )
+		{
+			std::cout << "You attacked the enemy critcaly" << std::endl;
+			dragon.takeDamge(40);
+		}
+		else if (input == "A" || input == "a" && critical == 1)
 		{
 			std::cout << "You attacked the enemy!" << std::endl;
-			dragon.current_health -= knight.attack;
+			dragon.takeDamge(20);
 		}
 		else if (input == "D" || input == "d")
 		{
@@ -55,18 +79,23 @@ void Knight()
 			continue;
 		}
 
-		if (dragon.current_health <= 0)
+		if (!dragon.isAlive())
 		{
 			std::cout << "You have defeated the dragon!" << std::endl;
 			break;
 		}
 
-		int random = std::rand() % 2;
+		int random = std::rand() % 3;
 
 		if (random == 0)
 		{
 			std::cout << "The dragon attacked you!" << std::endl;
-			knight.current_health -= dragon.attack;
+			knight.takeDamge(20);
+		}
+		else if (random == 1)
+		{
+			std::cout << "The dragon attacked you critcally!" << std::endl;
+			knight.takeDamge(40);
 		}
 		else
 		{
@@ -74,29 +103,40 @@ void Knight()
 			continue;
 		}
 	}
-	std::cout << "You have defeated the Dragon!" << std::endl;
 }
 
 void Dragon()
 {
+	entity dragon("Dragon", 200, 100);
+	entity knight("Himothy", 100, 100);
+
 	std::string input;
 
+	while (knight.isAlive() && dragon.isAlive()) {
 
-	while (dragon.current_health > 0 && knight.current_health > 0) {
-		std::cout << "Dragon's health: " << dragon.current_health << "/" << dragon.max_health << ' ' << "ATK" << dragon.attack << std::endl;
+		dragon.display();
 
 		std::cout << "**********************************" << std::endl;
 
-		std::cout << "Knight's health: " << knight.current_health << "/" << knight.max_health << ' ' << "ATK" << knight.attack << std::endl;
+		knight.display();
+
+		std::cout << "**********************************" << std::endl;
 
 		std::cout << "Type A to attack D to defend: ";
 
 		std::cin >> input;
 
-		if (input == "A" || input == "a")
+		int critical = std::rand() % 2;
+
+		if (input == "A" || input == "a" && critical == 0)
 		{
-			std::cout << "You attacked the enemy!" << std::endl;
-			knight.current_health -= dragon.attack;
+			std::cout << "You attacked the knight critcaly" << std::endl;
+			knight.takeDamge(40);
+		}
+		else if (input == "A" || input == "a" && critical == 1)
+		{
+			std::cout << "You attacked the knight!" << std::endl;
+			knight.takeDamge(20);
 		}
 		else if (input == "D" || input == "d")
 		{
@@ -109,18 +149,23 @@ void Dragon()
 			continue;
 		}
 
-		if (dragon.current_health <= 0)
+		if (!knight.isAlive())
 		{
-			std::cout << "You have defeated the Knight!" << std::endl;
+			std::cout << "You have defeated the knight!" << std::endl;
 			break;
 		}
 
-		int random = std::rand() % 2;
+		int random = std::rand() % 3;
 
 		if (random == 0)
 		{
-			std::cout << "The Knight attacked you!" << std::endl;
-			dragon.current_health -= knight.attack;
+			std::cout << "The knight attacked you!" << std::endl;
+			dragon.takeDamge(20);
+		}
+		else if (random == 1)
+		{
+			std::cout << "The knight attacked you critcally!" << std::endl;
+			dragon.takeDamge(40);
 		}
 		else
 		{
@@ -128,5 +173,4 @@ void Dragon()
 			continue;
 		}
 	}
-	std::cout << "You have defeated the Knight!" << std::endl;
 }

@@ -5,7 +5,8 @@ void Knight();
 void Dragon();
 
 
-int main() {
+int main() 
+{
 
 	std::cout << "Would you rather be a dragon or a knight?: ";
 	std::string input;
