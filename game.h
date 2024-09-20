@@ -26,9 +26,9 @@ void game::runGame()
 void game::knightVampire()
 {
 
-	entity knight("Himothy", 100, 100, 10);
-	entity dragon("dragon", 200, 200, 10);
-	entity vampire("vampire", 100, 100, 5);
+	entity knight("Himothy", 100, 100, 10, 10);
+	entity dragon("dragon", 200, 200, 10, 20);
+	entity vampire("vampire", 100, 100, 10, 5);
 	std::string input;
 
 	while (knight.isAlive() && vampire.isAlive())
@@ -96,12 +96,88 @@ void game::knightVampire()
 	}
 }
 
+void game::knightDragon()
+{
+
+	std::cout << "You find a dragon slaying sword!" << std::endl;
+	std::cout << "Plus 40 attack damage" << std::endl;
+
+	entity knight("Himothy", 100, 100, 50, 10);
+	entity dragon("dragon", 200, 200, 10, 20);
+	entity vampire("vampire", 100, 100, 10, 5);
+	std::string input;
+
+
+
+	while (knight.isAlive() && vampire.isAlive())
+	{
+
+		knight.display();
+
+		std::cout << "**********************************" << std::endl;
+
+		dragon.display();
+
+		std::cout << "**********************************" << std::endl;
+
+		std::cout << "Type A to attack D to defend: ";
+
+		std::cin >> input;
+
+		int critical = std::rand() % 2;
+
+		if (input == "A" || input == "a" && critical == 0)
+		{
+			std::cout << "You attacked the enemy critcaly" << std::endl;
+			dragon.defend(100, 20);
+		}
+		else if (input == "A" || input == "a" && critical == 1)
+		{
+			std::cout << "You attacked the enemy!" << std::endl;
+			dragon.defend(50, 20);
+		}
+		else if (input == "D" || input == "d")
+		{
+			std::cout << "You defended" << std::endl;
+			continue;
+		}
+		else
+		{
+			std::cout << "Invalid input" << std::endl;
+			continue;
+		}
+
+		if (!dragon.isAlive())
+		{
+			std::cout << "You have defeated the dragon!" << std::endl;
+			break;
+		}
+
+		int random = std::rand() % 3;
+
+		if (random == 0)
+		{
+			std::cout << "The dragon attacked you!" << std::endl;
+			knight.defend(20, 10);
+		}
+		else if (random == 1)
+		{
+			std::cout << "The dragon attacked you critcally!" << std::endl;
+			knight.defend(40, 10);
+		}
+		else
+		{
+			std::cout << "The dragon missed" << std::endl;
+		}
+	}
+}
+
 void game::knight()
 {
 
-	entity knight("Himothy", 100, 100, 10);
-	entity dragon("dragon", 200, 200, 10);
-	entity vampire("vampire", 100, 100, 10);
+	entity knight("Himothy", 100, 100, 10, 10);
+	entity dragon("dragon", 200, 200, 10, 20);
+	entity vampire("vampire", 100, 100, 10, 5);
 
 
 	std::string input;
@@ -120,13 +196,24 @@ void game::knight()
 
 		knightVampire();
 	}
+	else if (input == "right")
+	{
+		std::cout << "You went right, and encounter a dragon." << std::endl;
+		std::cout << "Watch out dragons have high defense!" << std::endl;
+
+		knightDragon();
+	}
+	else
+	{
+		std::cout << "Invalid input" << std::endl;
+	}
 }
 
 void game::dragon()
 {
-	entity knight("Himothy", 100, 100, 10);
-	entity dragon("dragon", 200, 200, 10);
-	entity vampire("vampire", 100, 100, 10);
+	entity knight("Himothy", 100, 100, 10, 10);
+	entity dragon("dragon", 200, 200, 10, 20);
+	entity vampire("vampire", 100, 100, 10, 5);
 
 	std::string input;
 

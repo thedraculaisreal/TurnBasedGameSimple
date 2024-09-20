@@ -13,21 +13,26 @@ private:
 	std::string name;
 	int current_health;
 	int max_health;
+	int attack;
 	int defense;
 
 public:
 
-	entity(std::string name, int current_health, int max_health, int defense)
-		: name(name), current_health(current_health), max_health(max_health), defense(defense) {}
+	entity(std::string name, int current_health, int max_health, int attack,  int defense)
+		: name(name), current_health(current_health), max_health(max_health), attack(attack), defense(defense) {}
 
 	void display()
 	{
-		std::cout << "Name: " << name << " " << current_health << '/' << max_health << ' ' << "DEF: " << defense << std::endl;
+		std::cout << "Name: " << name << " " << "HP:" << current_health << '/' << max_health << ' ' << "ATK:" << attack << " DEF:" << defense << std::endl;
 	}
 
 	bool isAlive()
 	{
-		return current_health > 0;
+		if (current_health > 0)
+			return true;
+		else
+			return false;
+
 	}
 
 	void takeDamge(int attack)
@@ -51,6 +56,7 @@ namespace game
 {
 	void runGame();
 	void knightVampire();
+	void knightDragon();
 	void knight();
 	void dragon();
 }
