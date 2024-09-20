@@ -1,8 +1,5 @@
 #include "entity.h"
 
-void Knight();
-void Dragon();
-
 
 int main() 
 {
