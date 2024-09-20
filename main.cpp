@@ -1,28 +1,12 @@
-#include "entity.h"
-
+#include "game.h"
 
 int main() 
 {
 
-	std::cout << "Would you rather be a dragon or a knight?: ";
-	std::string input;
-	std::string input2;
-	std::cin >> input;
 
-	while (input != "dragon" && input != "knight")
-	{
-		std::cout << "Invalid input" << std::endl;
-		std::cin >> input;
-	}
+	game::runGame();
 
-	if (input == "dragon")
-	{
-		Dragon();
-	}
-	else if (input == "knight")
-	{
-		Knight();
-	}
+	return 0;
 }
 
 	
