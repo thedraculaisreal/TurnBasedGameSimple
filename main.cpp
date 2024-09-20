@@ -6,6 +6,7 @@ int main()
 
 	std::cout << "Would you rather be a dragon or a knight?: ";
 	std::string input;
+	std::string input2;
 	std::cin >> input;
 
 	while (input != "dragon" && input != "knight")
@@ -23,3 +24,5 @@ int main()
 		Knight();
 	}
 }
+
+	
