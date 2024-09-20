@@ -39,6 +39,12 @@ public:
 	{
 		current_health += health;
 	}
+
+	void defend(int attack, int defense)
+	{
+		defense = std::rand() % defense;
+		current_health -= attack - defense;
+	}
 };
 
 namespace game

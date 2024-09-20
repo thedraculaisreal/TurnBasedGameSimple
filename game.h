@@ -28,7 +28,7 @@ void game::knightVampire()
 
 	entity knight("Himothy", 100, 100, 10);
 	entity dragon("dragon", 200, 200, 10);
-	entity vampire("vampire", 100, 100, 10);
+	entity vampire("vampire", 100, 100, 5);
 	std::string input;
 
 	while (knight.isAlive() && vampire.isAlive())
@@ -51,12 +51,12 @@ void game::knightVampire()
 		if (input == "A" || input == "a" && critical == 0)
 		{
 			std::cout << "You attacked the enemy critcaly" << std::endl;
-			vampire.takeDamge(40);
+			vampire.defend(40, 5);
 		}
 		else if (input == "A" || input == "a" && critical == 1)
 		{
 			std::cout << "You attacked the enemy!" << std::endl;
-			vampire.takeDamge(20);
+			vampire.defend(20, 5);
 		}
 		else if (input == "D" || input == "d")
 		{
@@ -80,12 +80,12 @@ void game::knightVampire()
 		if (random == 0)
 		{
 			std::cout << "The vampire attacked you!" << std::endl;
-			knight.takeDamge(10);
+			knight.defend(20, 10);
 		}
 		else if (random == 1)
 		{
 			std::cout << "The vampire attacked you critcally!" << std::endl;
-			knight.takeDamge(20);
+			knight.defend(30, 10);
 		}
 		else
 		{
