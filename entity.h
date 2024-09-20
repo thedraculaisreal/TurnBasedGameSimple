@@ -16,14 +16,13 @@ private:
 	int defense;
 
 public:
-	//constructor for entity
+
 	entity(std::string name, int current_health, int max_health, int defense)
 		: name(name), current_health(current_health), max_health(max_health), defense(defense) {}
 
-	//display function to display the name and health of the entity
 	void display()
 	{
-		std::cout << "Name: " << name << " " << current_health << '/' << max_health << std::endl;
+		std::cout << "Name: " << name << " " << current_health << '/' << max_health << ' ' << "DEF: " << defense << std::endl;
 	}
 
 	bool isAlive()
