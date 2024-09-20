@@ -15,10 +15,11 @@ private:
 	int max_health;
 
 public:
-
+	//constructor for entity
 	entity(std::string name, int current_health, int max_health)
 		: name(name), current_health(current_health), max_health(max_health) {}
 
+	//display function to display the name and health of the entity
 	void display()
 	{
 		std::cout << "Name: " << name << " " << current_health << '/' << max_health << std::endl;
@@ -37,8 +38,9 @@ public:
 
 void Knight()
 {
-	entity dragon("Dragon", 200, 100);
+	entity dragon("Daisy", 200, 100);
 	entity knight("Himothy", 100, 100);
+	entity black("bored", 50, 50);
 
 	std::string input;
 
@@ -49,6 +51,10 @@ void Knight()
 		std::cout << "**********************************" << std::endl;
 
 		dragon.display();
+
+		std::cout << "**********************************" << std::endl;
+
+		black.display();
 
 		std::cout << "**********************************" << std::endl;
 
@@ -100,6 +106,25 @@ void Knight()
 		else
 		{
 			std::cout << "The dragon missed" << std::endl;
+		}
+
+		std::cout << "Boreds turn who do you want to attack? (d),(h)" << std::endl;
+
+		std::cin >> input;
+
+		if (input == "D" || input == "d")
+		{
+			std::cout << "You attacked the dragon!" << std::endl;
+			dragon.takeDamge(20);
+		}
+		else if (input == "H" || input == "h")
+		{
+			std::cout << "You attacked the knight!" << std::endl;
+			knight.takeDamge(20);
+		}
+		else
+		{
+			std::cout << "Invalid input" << std::endl;
 			continue;
 		}
 	}
@@ -107,8 +132,9 @@ void Knight()
 
 void Dragon()
 {
-	entity dragon("Dragon", 200, 100);
+	entity dragon("Daisy", 200, 100);
 	entity knight("Himothy", 100, 100);
+	entity black("bored", 50, 50);
 
 	std::string input;
 
@@ -119,6 +145,10 @@ void Dragon()
 		std::cout << "**********************************" << std::endl;
 
 		knight.display();
+
+		std::cout << "**********************************" << std::endl;
+
+		black.display();
 
 		std::cout << "**********************************" << std::endl;
 
@@ -170,6 +200,25 @@ void Dragon()
 		else
 		{
 			std::cout << "The knight missed" << std::endl;
+		}
+
+		std::cout << "Boreds turn who do you want to attack? (d),(h)" << std::endl;
+
+		std::cin >> input;
+
+		if (input == "D" || input == "d")
+		{
+			std::cout << "You attacked the dragon!" << std::endl;
+			dragon.takeDamge(20);
+		}
+		else if (input == "H" || input == "h")
+		{
+			std::cout << "You attacked the knight!" << std::endl;
+			knight.takeDamge(20);
+		}
+		else
+		{
+			std::cout << "Invalid input" << std::endl;
 			continue;
 		}
 	}
