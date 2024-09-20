@@ -22,10 +22,10 @@ int main()
 		else
 		{
 			std::cout << "Invalid input" << std::endl;
+			break;
 		}
 		
 	}
-
 
 	return 0;
 }
