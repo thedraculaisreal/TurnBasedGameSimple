@@ -30,6 +30,8 @@ void game::knightVampire()
 	entity dragon("dragon", 200, 200, 10, 20);
 	entity vampire("vampire", 100, 100, 10, 5);
 	std::string input;
+	std::string enemy = "vampire";
+	std::string player = "knight";
 
 	while (knight.isAlive() && vampire.isAlive())
 	{
@@ -48,50 +50,56 @@ void game::knightVampire()
 
 		int critical = std::rand() % 2;
 
-		if (input == "A" || input == "a" && critical == 0)
+		switch (input[0])
 		{
-			std::cout << "You attacked the enemy critcaly" << std::endl;
-			vampire.defend(40, 5);
-		}
-		else if (input == "A" || input == "a" && critical == 1)
-		{
-			std::cout << "You attacked the enemy!" << std::endl;
-			vampire.defend(20, 5);
-		}
-		else if (input == "D" || input == "d")
-		{
+		case 'A':
+		case 'a':
+			if (critical == 0)
+			{
+				std::cout << "You attacked the " << enemy << " critcaly" << std::endl;
+				dragon.defend(40, 5);
+				break;
+			}
+			else
+			{
+				std::cout << "You attacked the " << enemy << std::endl;
+				dragon.defend(20, 5);
+				break;
+			}
+
+		case 'D':
+		case 'd':
 			std::cout << "You defended" << std::endl;
 			continue;
-		}
-		else
-		{
+
+		default:
 			std::cout << "Invalid input" << std::endl;
 			continue;
 		}
 
-		if (!vampire.isAlive())
+		if (!dragon.isAlive())
 		{
-			std::cout << "You have defeated the vampire!" << std::endl;
+			std::cout << "You have defeated the " << enemy << std::endl;
 			break;
 		}
 
 		int random = std::rand() % 3;
 
-		if (random == 0)
+		switch (random)
 		{
-			std::cout << "The vampire attacked you!" << std::endl;
+		case 0:
+			std::cout << "The " << enemy << " attacked you!" << std::endl;
 			knight.defend(20, 10);
-		}
-		else if (random == 1)
-		{
-			std::cout << "The vampire attacked you critcally!" << std::endl;
-			knight.defend(30, 10);
-		}
-		else
-		{
-			std::cout << "The vampire missed" << std::endl;
-		}
+			break;
 
+		case 1:
+			std::cout << "The " << enemy << " attacked you critcally!" << std::endl;
+			knight.defend(40, 10);
+			break;
+
+		default:
+			std::cout << "The " << enemy << " missed" << std::endl;
+		}
 		vampire.heal(10);
 	}
 }
@@ -106,6 +114,8 @@ void game::knightDragon()
 	entity dragon("dragon", 200, 200, 10, 20);
 	entity vampire("vampire", 100, 100, 10, 5);
 	std::string input;
+	std::string enemy = "dragon";
+	std::string player = "knight";
 
 
 
@@ -126,55 +136,61 @@ void game::knightDragon()
 
 		int critical = std::rand() % 2;
 
-		if (input == "A" || input == "a" && critical == 0)
+		switch (input[0])
 		{
-			std::cout << "You attacked the enemy critcaly" << std::endl;
-			dragon.defend(100, 20);
-		}
-		else if (input == "A" || input == "a" && critical == 1)
-		{
-			std::cout << "You attacked the enemy!" << std::endl;
-			dragon.defend(50, 20);
-		}
-		else if (input == "D" || input == "d")
-		{
+		case 'A':
+		case 'a':
+			if (critical == 0)
+			{
+				std::cout << "You attacked the " << enemy << " critcaly" << std::endl;
+				dragon.defend(100, 20);
+				break;
+			}
+			else
+			{
+				std::cout << "You attacked the " << enemy << std::endl;
+				dragon.defend(50, 20);
+				break;
+			}
+
+		case 'D':
+		case 'd':
 			std::cout << "You defended" << std::endl;
 			continue;
-		}
-		else
-		{
+
+		default:
 			std::cout << "Invalid input" << std::endl;
 			continue;
 		}
 
 		if (!dragon.isAlive())
 		{
-			std::cout << "You have defeated the dragon!" << std::endl;
+			std::cout << "You have defeated the " << enemy << std::endl;
 			break;
 		}
 
 		int random = std::rand() % 3;
 
-		if (random == 0)
+		switch (random)
 		{
-			std::cout << "The dragon attacked you!" << std::endl;
-			knight.defend(20, 10);
-		}
-		else if (random == 1)
-		{
-			std::cout << "The dragon attacked you critcally!" << std::endl;
-			knight.defend(40, 10);
-		}
-		else
-		{
-			std::cout << "The dragon missed" << std::endl;
+		case 0:
+			std::cout << "The " << enemy << " attacked you!" << std::endl;
+			knight.defend(20, 20);
+			break;
+
+		case 1:
+			std::cout << "The " << enemy << " attacked you critcally!" << std::endl;
+			knight.defend(40, 20);
+			break;
+
+		default:
+			std::cout << "The " << enemy << " missed" << std::endl;
 		}
 	}
 }
 
 void game::knight()
 {
-
 	entity knight("Himothy", 100, 100, 10, 10);
 	entity dragon("dragon", 200, 200, 10, 20);
 	entity vampire("vampire", 100, 100, 10, 5);
@@ -251,6 +267,8 @@ void game::dragonVampire()
 	entity dragon("dragon", 200, 200, 10, 20);
 	entity vampire("vampire", 100, 100, 10, 5);
 	std::string input;
+	std::string enemy = "vampire";
+	std::string player = "dragon";
 
 	while (knight.isAlive() && vampire.isAlive())
 	{
@@ -269,48 +287,55 @@ void game::dragonVampire()
 
 		int critical = std::rand() % 2;
 
-		if (input == "A" || input == "a" && critical == 0)
+		switch (input[0])
 		{
-			std::cout << "You attacked the enemy critcaly" << std::endl;
-			vampire.defend(40, 5);
-		}
-		else if (input == "A" || input == "a" && critical == 1)
-		{
-			std::cout << "You attacked the enemy!" << std::endl;
-			vampire.defend(20, 5);
-		}
-		else if (input == "D" || input == "d")
-		{
+		case 'A':
+		case 'a':
+			if (critical == 0)
+			{
+				std::cout << "You attacked the " << enemy << " critcaly" << std::endl;
+				vampire.defend(40, 5);
+				break;
+			}
+			else
+			{
+				std::cout << "You attacked the " << enemy << std::endl;
+				vampire.defend(20, 5);
+				break;
+			}
+
+		case 'D':
+		case 'd':
 			std::cout << "You defended" << std::endl;
 			continue;
-		}
-		else
-		{
+
+		default:
 			std::cout << "Invalid input" << std::endl;
 			continue;
 		}
 
 		if (!vampire.isAlive())
 		{
-			std::cout << "You have defeated the vampire!" << std::endl;
+			std::cout << "You have defeated the " << enemy << std::endl;
 			break;
 		}
 
 		int random = std::rand() % 3;
 
-		if (random == 0)
+		switch (random)
 		{
-			std::cout << "The vampire attacked you!" << std::endl;
-			knight.defend(20, 10);
-		}
-		else if (random == 1)
-		{
-			std::cout << "The vampire attacked you critcally!" << std::endl;
-			knight.defend(30, 10);
-		}
-		else
-		{
-			std::cout << "The vampire missed" << std::endl;
+		case 0:
+			std::cout << "The " << enemy << " attacked you!" << std::endl;
+			dragon.defend(20, 20);
+			break;
+
+		case 1:
+			std::cout << "The " << enemy << " attacked you critcally!" << std::endl;
+			dragon.defend(40, 20);
+			break;
+
+		default:
+			std::cout << "The " << enemy << " missed" << std::endl;
 		}
 
 		vampire.heal(10);
@@ -343,23 +368,29 @@ void game::dragonKnight()
 
 		int critical = std::rand() % 2;
 
-		if (input == "A" || input == "a" && critical == 0)
+		switch (input[0])
 		{
-			std::cout << "You attacked the enemy critcaly" << std::endl;
-			knight.defend(40, 10);
-		}
-		else if (input == "A" || input == "a" && critical == 1)
-		{
-			std::cout << "You attacked the enemy!" << std::endl;
-			knight.defend(20, 10);
-		}
-		else if (input == "D" || input == "d")
-		{
+		case 'A':
+		case 'a':
+			if (critical == 0)
+			{
+				std::cout << "You attacked the enemy critcaly" << std::endl;
+				knight.defend(40, 10);
+				break;
+			}
+			else
+			{
+				std::cout << "You attacked the enemy!" << std::endl;
+				knight.defend(20, 10);
+				break;
+			}
+
+		case 'D':
+		case 'd':
 			std::cout << "You defended" << std::endl;
 			continue;
-		}
-		else
-		{
+		
+		default:
 			std::cout << "Invalid input" << std::endl;
 			continue;
 		}
@@ -372,18 +403,19 @@ void game::dragonKnight()
 
 		int random = std::rand() % 3;
 
-		if (random == 0)
+		switch (random)
 		{
+		case 0:
 			std::cout << "The knight attacked you!" << std::endl;
 			dragon.defend(20, 20);
-		}
-		else if (random == 1)
-		{
+			break;
+
+		case 1:
 			std::cout << "The knight attacked you critcally!" << std::endl;
 			dragon.defend(40, 20);
-		}
-		else
-		{
+			break;
+
+		default:
 			std::cout << "The knight missed" << std::endl;
 		}
 	}

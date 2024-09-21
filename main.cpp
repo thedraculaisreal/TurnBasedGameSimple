@@ -12,7 +12,23 @@ int main()
 		std::cout << "Would you like to play again? (Y/N): ";
 		std::cin >> input;
 
-		if (input == 'N' || input == 'n')
+		switch (input)
+		{
+		case 'Y':
+		case 'y':
+			continue;
+			break;
+
+		case 'N':
+		case 'n':
+			break;
+
+		default:
+			std::cout << "Invalid input" << std::endl;
+			break;
+		}
+
+		/*if (input == 'N' || input == 'n')
 		{
 			break;
 		}
@@ -24,7 +40,7 @@ int main()
 		{
 			std::cout << "Invalid input" << std::endl;
 			break;
-		}
+		}*/
 		
 	}
 
