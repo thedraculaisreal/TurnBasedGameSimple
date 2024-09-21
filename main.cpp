@@ -5,6 +5,7 @@ int main()
 
 	while (true) 
 	{
+
 		game::runGame();
 
 		char input;
@@ -29,5 +30,3 @@ int main()
 
 	return 0;
 }
-
-	

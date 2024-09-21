@@ -59,4 +59,6 @@ namespace game
 	void knightDragon();
 	void knight();
 	void dragon();
+	void dragonVampire();
+	void dragonKnight();
 }
